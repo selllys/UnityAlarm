@@ -11,6 +11,12 @@ public class AlarmAudio : MonoBehaviour
     private AudioSource _audioSource;
     private Coroutine _activeCoroutine;
 
+    private void OnValidate()
+    {
+        _maxVolume = Mathf.Clamp(_maxVolume, 0.1f, 1f);
+        _minVolume = Mathf.Clamp(_minVolume, 0f, _maxVolume);
+    }
+
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -68,11 +74,5 @@ public class AlarmAudio : MonoBehaviour
         {
             StopCoroutine(_activeCoroutine);
         }
-    }
-
-    private void OnValidate()
-    {
-        _maxVolume = Mathf.Clamp(_maxVolume, 0.1f, 1f);
-        _minVolume = Mathf.Clamp(_minVolume, 0f, _maxVolume);
     }
 }

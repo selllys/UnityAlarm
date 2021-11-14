@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour
 {
+    private const string Speed = "Speed";
+
     [SerializeField] private float _moveSpeed = 15f;
 
     private Animator _animator;
@@ -22,7 +24,7 @@ public class Player : MonoBehaviour
         Vector2 moveDirection = new Vector2(horizontalAxis, 0);
         transform.Translate(moveDirection * _moveSpeed * Time.deltaTime);
 
-        _animator.SetFloat("Speed", Mathf.Abs(horizontalAxis));
+        _animator.SetFloat(Speed, Mathf.Abs(horizontalAxis));
         _sprite.flipX = horizontalAxis < 0;
     }
 }
